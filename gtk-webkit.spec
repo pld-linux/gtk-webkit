@@ -39,6 +39,7 @@ webkit to port osadzalnego komponentu WWW WebKit do GTK+.
 Summary:	Development files for webkit
 Summary(pl.UTF-8):	Pliki programistyczne webkit
 Group:		X11/Development/Libraries
+Requires:	%{name} = %{version}-%{release}
 Requires:	curl-devel >= 7.11.0
 Requires:	fontconfig-devel >= 1.0.0
 Requires:	gtk-webcore-nrcore-libs-devel >= 0.5.3
