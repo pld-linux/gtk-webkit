@@ -21,6 +21,7 @@ BuildRequires:	libicu-devel
 BuildRequires:	libjpeg-devel
 BuildRequires:	libpng-devel
 BuildRequires:	librsvg-devel >= 2.2.0
+BuildRequires:	libstdc++-devel
 BuildRequires:	libtool >= 2:1.5
 BuildRequires:	libxslt-devel
 BuildRequires:	pkgconfig
@@ -42,8 +43,8 @@ Group:		X11/Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 Requires:	curl-devel >= 7.11.0
 Requires:	fontconfig-devel >= 1.0.0
-Requires:	gtk-webcore-nrcore-libs-devel >= 0.5.3
 Requires:	librsvg-devel >= 2.2.0
+Requires:	libstdc++-devel
 Requires:	xorg-lib-libXft-devel >= 2.0.0
 
 %description devel
