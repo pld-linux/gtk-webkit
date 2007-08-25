@@ -1,3 +1,4 @@
+# TODO: optflags
 %define snap	20070810
 Summary:	Port of WebKit embeddable web component to GTK+
 Summary(pl.UTF-8):	Port osadzalnego komponentu WWW WebKit do GTK+
@@ -62,8 +63,8 @@ WebKitTools/Scripts/build-webkit --gdk
 
 %install
 rm -rf $RPM_BUILD_ROOT
-cd WebKitBuild/Release
-%{__make} install \
+
+%{__make} -C WebKitBuild/Release install \
 	INSTALL_ROOT=$RPM_BUILD_ROOT
 
 %clean
@@ -74,6 +75,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
+%doc ChangeLog
 %attr(755,root,root) %{_libdir}/libWebKitGdk.so.*.*.*
 
 %files devel
