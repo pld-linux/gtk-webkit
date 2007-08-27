@@ -1,5 +1,5 @@
 # TODO: optflags
-%define snap	20070810
+%define snap	20070827
 Summary:	Port of WebKit embeddable web component to GTK+
 Summary(pl.UTF-8):	Port osadzalnego komponentu WWW WebKit do GTK+
 Name:		gtk-webkit
@@ -8,7 +8,7 @@ Release:	0.%{snap}.1
 License:	BSD-like
 Group:		X11/Libraries
 Source0:	webkit-svn.tar.bz2
-# Source0-md5:	f021365830e08bf10b3edb7d5a15bf3c
+# Source0-md5:	bd304c2fb5759974ff019bf9a7bcd819
 Patch0:		%{name}-qmake.patch
 URL:		http://www.webkit.org/
 BuildRequires:	autoconf
