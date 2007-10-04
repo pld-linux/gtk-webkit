@@ -1,5 +1,5 @@
 # TODO: optflags
-%define snap	20070908
+%define snap	r26041
 Summary:	Port of WebKit embeddable web component to GTK+
 Summary(pl.UTF-8):	Port osadzalnego komponentu WWW WebKit do GTK+
 Name:		gtk-webkit
@@ -7,8 +7,8 @@ Version:	0.0
 Release:	0.%{snap}.1
 License:	BSD-like
 Group:		X11/Libraries
-Source0:	webkit-svn.tar.bz2
-# Source0-md5:	1acdca6342b0f9d72a77ab2d6caa80fa
+Source0:	http://nightly.webkit.org/files/trunk/src/WebKit-%{snap}.tar.bz2
+# Source0-md5:	e5732f95e7356d7406b4d126f1153187
 Patch0:		%{name}-qmake.patch
 URL:		http://www.webkit.org/
 BuildRequires:	autoconf
@@ -55,11 +55,13 @@ Development files for webkit.
 Pliki programistyczne webkit.
 
 %prep
-%setup -q -n webkit
+%setup -q -n WebKit-%{snap}
 %patch0 -p1
 
 %build
-WebKitTools/Scripts/build-webkit --gdk
+WebKitTools/Scripts/build-webkit --gtk \
+	-qmakearg=WEBKIT_INC_DIR=%{_includedir}/WebKit \
+	-qmakearg=WEBKIT_LIB_DIR=%{_libdir}
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -75,12 +77,11 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc ChangeLog
-%attr(755,root,root) %{_libdir}/libWebKitGdk.so.*.*.*
+%attr(755,root,root) %{_libdir}/libWebKitGtk.so.*.*.*
 
 %files devel
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/libWebKitGdk.so
-%{_libdir}/libWebKitGdk.prl
+%attr(755,root,root) %{_libdir}/libWebKitGtk.so
+%{_libdir}/libWebKitGtk.prl
 %{_includedir}/qt4/WebKitGtk
-%{_pkgconfigdir}/WebKitGdk.pc
+%{_pkgconfigdir}/WebKitGtk.pc
