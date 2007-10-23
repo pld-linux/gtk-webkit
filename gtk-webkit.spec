@@ -9,7 +9,6 @@ License:	BSD-like
 Group:		X11/Libraries
 Source0:	http://nightly.webkit.org/files/trunk/src/WebKit-%{snap}.tar.bz2
 # Source0-md5:	82f0063145b748c0469c21d6697e7ce2
-Patch0:		%{name}-qmake.patch
 URL:		http://www.webkit.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -56,12 +55,12 @@ Pliki programistyczne webkit.
 
 %prep
 %setup -q -n WebKit-%{snap}
-%patch0 -p1
 
 %build
 WebKitTools/Scripts/build-webkit --gtk \
 	-qmakearg=WEBKIT_INC_DIR=%{_includedir}/WebKit \
-	-qmakearg=WEBKIT_LIB_DIR=%{_libdir}
+	-qmakearg=WEBKIT_LIB_DIR=%{_libdir} \
+	--qmake=qt4-qmake
 
 %install
 rm -rf $RPM_BUILD_ROOT
