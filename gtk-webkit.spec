@@ -1,5 +1,5 @@
 # TODO: optflags
-%define snap	r27208
+%define snap	r27953
 Summary:	Port of WebKit embeddable web component to GTK+
 Summary(pl.UTF-8):	Port osadzalnego komponentu WWW WebKit do GTK+
 Name:		gtk-webkit
@@ -8,7 +8,7 @@ Release:	0.%{snap}.1
 License:	BSD-like
 Group:		X11/Libraries
 Source0:	http://nightly.webkit.org/files/trunk/src/WebKit-%{snap}.tar.bz2
-# Source0-md5:	18b647e8d247f02eda7c82eeb9b610c9
+# Source0-md5:	bb603a4ad8fb785dbe2103fb6fb9554f
 URL:		http://www.webkit.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -58,8 +58,8 @@ Pliki programistyczne webkit.
 
 %build
 WebKitTools/Scripts/build-webkit --gtk \
-	-qmakearg=WEBKIT_INC_DIR=%{_includedir}/WebKit \
-	-qmakearg=WEBKIT_LIB_DIR=%{_libdir} \
+	--qmakearg=WEBKIT_INC_DIR=%{_includedir}/WebKit \
+	--qmakearg=WEBKIT_LIB_DIR=%{_libdir} \
 	--qmake=qt4-qmake
 
 %install
@@ -82,5 +82,5 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libWebKitGtk.so
 %{_libdir}/libWebKitGtk.prl
-%{_includedir}/qt4/WebKitGtk
+%{_includedir}/WebKit
 %{_pkgconfigdir}/WebKitGtk.pc
