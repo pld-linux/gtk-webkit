@@ -25,7 +25,7 @@ BuildRequires:	libstdc++-devel
 BuildRequires:	libtool >= 2:1.5
 BuildRequires:	libxslt-devel
 BuildRequires:	pkgconfig
-BuildRequires:	qt4-qmake
+BuildRequires:	qt4-qmake >= 4.3.3-3
 BuildRequires:	sqlite3-devel
 BuildRequires:	xorg-lib-libXft-devel >= 2.0.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -60,7 +60,7 @@ Pliki programistyczne webkit.
 WebKitTools/Scripts/build-webkit --gtk \
 	--qmakearg=WEBKIT_INC_DIR=%{_includedir}/WebKit \
 	--qmakearg=WEBKIT_LIB_DIR=%{_libdir} \
-	--qmake=qt4-qmake
+	--qmake=qmake-qt4
 
 %install
 rm -rf $RPM_BUILD_ROOT
