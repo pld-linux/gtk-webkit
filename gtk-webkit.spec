@@ -4,7 +4,7 @@ Summary:	Port of WebKit embeddable web component to GTK+
 Summary(pl.UTF-8):	Port osadzalnego komponentu WWW WebKit do GTK+
 Name:		gtk-webkit
 Version:	1.0.0
-Release:	0.%{snap}.1
+Release:	0.%{snap}.2
 License:	BSD-like
 Group:		X11/Libraries
 Source0:	http://nightly.webkit.org/files/trunk/src/WebKit-%{snap}.tar.bz2
@@ -58,7 +58,7 @@ Pliki programistyczne webkit.
 
 %build
 WebKitTools/Scripts/build-webkit --gtk \
-	--qmakearg=WEBKIT_INC_DIR=%{_includedir}/WebKit \
+	--qmakearg=WEBKIT_INC_DIR=%{_includedir}/webkit \
 	--qmakearg=WEBKIT_LIB_DIR=%{_libdir} \
 	--qmake=qmake-qt4
 
@@ -82,5 +82,5 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libWebKitGtk.so
 %{_libdir}/libWebKitGtk.prl
-%{_includedir}/WebKit
+%{_includedir}/webkit
 %{_pkgconfigdir}/WebKitGtk.pc
