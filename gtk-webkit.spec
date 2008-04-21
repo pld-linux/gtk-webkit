@@ -4,7 +4,7 @@ Summary:	Port of WebKit embeddable web component to GTK+
 Summary(pl.UTF-8):	Port osadzalnego komponentu WWW WebKit do GTK+
 Name:		gtk-webkit
 Version:	1.0.0
-Release:	0.%{snap}.1
+Release:	0.%{snap}.2
 License:	BSD-like
 Group:		X11/Libraries
 Source0:	http://nightly.webkit.org/files/trunk/src/WebKit-%{snap}.tar.bz2
@@ -24,6 +24,7 @@ BuildRequires:	librsvg-devel >= 2.2.0
 BuildRequires:	libstdc++-devel
 BuildRequires:	libtool >= 2:1.5
 BuildRequires:	libxslt-devel
+BuildRequires:	pango-devel
 BuildRequires:	pkgconfig
 BuildRequires:	sqlite3-devel
 BuildRequires:	xorg-lib-libXft-devel >= 2.0.0
@@ -62,7 +63,9 @@ Pliki programistyczne webkit.
 %{__automake}
 %{__autoconf}
 %configure \
-	--enable-video
+	--enable-svg-experimental \
+	--enable-video \
+	--with-font-backend=pango
 %{__make}
 
 %install
