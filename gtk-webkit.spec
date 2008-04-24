@@ -46,6 +46,7 @@ Group:		X11/Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 Requires:	curl-devel >= 7.11.0
 Requires:	fontconfig-devel >= 1.0.0
+Requires:	libicu-devel
 Requires:	librsvg-devel >= 2.2.0
 Requires:	libstdc++-devel
 Requires:	xorg-lib-libXft-devel >= 2.0.0
