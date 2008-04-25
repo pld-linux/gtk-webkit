@@ -16,8 +16,8 @@ BuildRequires:	bison
 BuildRequires:	curl-devel >= 7.11.0
 BuildRequires:	flex
 BuildRequires:	fontconfig-devel >= 1.0.0
-BuildRequires:	gperf
 BuildRequires:	gnome-vfs2-devel
+BuildRequires:	gperf
 BuildRequires:	gstreamer-devel >= 0.10
 BuildRequires:	gstreamer-plugins-base-devel
 BuildRequires:	libicu-devel
