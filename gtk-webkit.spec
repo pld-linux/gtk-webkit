@@ -31,6 +31,7 @@ BuildRequires:	pango-devel
 BuildRequires:	pkgconfig
 BuildRequires:	sqlite3-devel
 BuildRequires:	xorg-lib-libXft-devel >= 2.0.0
+BuildRequires:	xorg-lib-libXt-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
