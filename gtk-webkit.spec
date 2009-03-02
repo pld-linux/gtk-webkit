@@ -1,14 +1,13 @@
 # TODO: optflags
-%define snap	r40023
 Summary:	Port of WebKit embeddable web component to GTK+
 Summary(pl.UTF-8):	Port osadzalnego komponentu WWW WebKit do GTK+
 Name:		gtk-webkit
-Version:	1.0.3
-Release:	0.%{snap}.1
+Version:	1.1.1
+Release:	1
 License:	BSD-like
 Group:		X11/Libraries
-Source0:	http://builds.nightly.webkit.org/files/trunk/src/WebKit-%{snap}.tar.bz2
-# Source0-md5:	e5e77fb965c17e1bd9c537f86928f277
+Source0:	http://cafe.minaslivre.org/webkit/webkit-%{version}.tar.gz
+# Source0-md5:	d3a5d7233beab310e9d3e5568fae49a1
 URL:		http://www.webkit.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -24,6 +23,7 @@ BuildRequires:	libicu-devel
 BuildRequires:	libjpeg-devel
 BuildRequires:	libpng-devel
 BuildRequires:	librsvg-devel >= 2.2.0
+BuildRequires:	libsoup-devel >= 2.25.91
 BuildRequires:	libstdc++-devel
 BuildRequires:	libtool >= 2:1.5
 BuildRequires:	libxslt-devel
@@ -59,10 +59,10 @@ Development files for webkit.
 Pliki programistyczne webkit.
 
 %prep
-%setup -q -n WebKit-%{snap}
+%setup -q -n webkit-%{version}
 
 %build
-%{__aclocal}
+%{__aclocal} -I autotools
 %{__libtoolize}
 %{__autoheader}
 %{__automake}
