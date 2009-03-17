@@ -2,19 +2,20 @@
 Summary:	Port of WebKit embeddable web component to GTK+
 Summary(pl.UTF-8):	Port osadzalnego komponentu WWW WebKit do GTK+
 Name:		gtk-webkit
-Version:	1.1.1
+Version:	1.1.3
 Release:	1
 License:	BSD-like
 Group:		X11/Libraries
-Source0:	http://cafe.minaslivre.org/webkit/webkit-%{version}.tar.gz
-# Source0-md5:	d3a5d7233beab310e9d3e5568fae49a1
-URL:		http://www.webkit.org/
+Source0:	http://webkitgtk.org/webkit-%{version}.tar.gz
+# Source0-md5:	9c1dcba372e2a56d6011ad807abc80e6
+URL:		http://webkitgtk.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	bison
 BuildRequires:	curl-devel >= 7.11.0
 BuildRequires:	flex
 BuildRequires:	fontconfig-devel >= 1.0.0
+BuildRequires:	gnome-keyring-devel >= 2.26.0
 BuildRequires:	gnome-vfs2-devel
 BuildRequires:	gperf
 BuildRequires:	gstreamer-devel >= 0.10
@@ -69,6 +70,7 @@ Pliki programistyczne webkit.
 %{__autoconf}
 %configure \
 	--enable-dom-storage \
+	--enable-gnomekeyring \
 	--enable-icon-database \
 	--enable-svg-experimental \
 	--enable-svg-filters \
