@@ -93,7 +93,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/jsc
 %attr(755,root,root) %{_libdir}/libwebkit-1.0.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libwebkit-1.0.so.2
+%attr(755,root,root) %ghost %{_libdir}/libwebkit-1.0.so.1
 %dir %{_datadir}/webkit-1.0
 %{_datadir}/webkit-1.0/webinspector
 
