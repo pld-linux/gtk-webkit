@@ -2,12 +2,12 @@
 Summary:	Port of WebKit embeddable web component to GTK+
 Summary(pl.UTF-8):	Port osadzalnego komponentu WWW WebKit do GTK+
 Name:		gtk-webkit
-Version:	1.1.10
-Release:	2
+Version:	1.1.11
+Release:	1
 License:	BSD-like
 Group:		X11/Libraries
 Source0:	http://webkitgtk.org/webkit-%{version}.tar.gz
-# Source0-md5:	b852753b3e21f010f565312132f88311
+# Source0-md5:	022a72ba5b7fa9e29553c03bf027215f
 URL:		http://webkitgtk.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -25,7 +25,7 @@ BuildRequires:	libicu-devel
 BuildRequires:	libjpeg-devel
 BuildRequires:	libpng-devel
 BuildRequires:	librsvg-devel >= 2.2.0
-BuildRequires:	libsoup-devel >= 2.26.0
+BuildRequires:	libsoup-devel >= 2.27.4
 BuildRequires:	libstdc++-devel
 BuildRequires:	libtool >= 2:1.5
 BuildRequires:	libxslt-devel
