@@ -2,12 +2,12 @@
 Summary:	Port of WebKit embeddable web component to GTK+
 Summary(pl.UTF-8):	Port osadzalnego komponentu WWW WebKit do GTK+
 Name:		gtk-webkit
-Version:	1.1.12
+Version:	1.1.13
 Release:	1
 License:	BSD-like
 Group:		X11/Libraries
 Source0:	http://webkitgtk.org/webkit-%{version}.tar.gz
-# Source0-md5:	1a10c117a0dd3717c2bcaa7a115cf218
+# Source0-md5:	627d5ac4b2c7a967e5a5ccb175e459ea
 URL:		http://webkitgtk.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
