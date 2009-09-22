@@ -14,6 +14,7 @@ BuildRequires:	automake
 BuildRequires:	bison
 BuildRequires:	curl-devel >= 7.11.0
 BuildRequires:	flex
+BuildRequires:	glib2-devel >= 1:2.21.3
 BuildRequires:	fontconfig-devel >= 1.0.0
 BuildRequires:	gnome-keyring-devel >= 2.26.0
 BuildRequires:	gnome-vfs2-devel
