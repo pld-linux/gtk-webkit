@@ -26,7 +26,7 @@ BuildRequires:	libicu-devel
 BuildRequires:	libjpeg-devel
 BuildRequires:	libpng-devel
 BuildRequires:	librsvg-devel >= 2.2.0
-BuildRequires:	libsoup-devel >= 2.26.0
+BuildRequires:	libsoup-devel >= 2.27.4
 BuildRequires:	libstdc++-devel
 BuildRequires:	libtool >= 2:1.5
 BuildRequires:	libxslt-devel
