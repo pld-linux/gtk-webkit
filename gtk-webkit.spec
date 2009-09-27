@@ -2,35 +2,33 @@
 Summary:	Port of WebKit embeddable web component to GTK+
 Summary(pl.UTF-8):	Port osadzalnego komponentu WWW WebKit do GTK+
 Name:		gtk-webkit
-Version:	1.1.14
-Release:	2
+Version:	1.1.15.1
+Release:	1
 License:	BSD-like
 Group:		X11/Libraries
 Source0:	http://webkitgtk.org/webkit-%{version}.tar.gz
-# Source0-md5:	bff87d1ddc562223cb99201950d7e138
+# Source0-md5:	e6eb43bb4f75b4a2a09aec95e2f43e91
 URL:		http://webkitgtk.org/
-BuildRequires:	autoconf
+BuildRequires:	autoconf >= 2.59
 BuildRequires:	automake
 BuildRequires:	bison
-BuildRequires:	curl-devel >= 7.11.0
+BuildRequires:	enchant-devel >= 0.22
 BuildRequires:	flex
-BuildRequires:	glib2-devel >= 1:2.21.3
 BuildRequires:	fontconfig-devel >= 1.0.0
-BuildRequires:	gnome-keyring-devel >= 2.26.0
-BuildRequires:	gnome-vfs2-devel
+BuildRequires:	glib2-devel >= 1:2.22.0
 BuildRequires:	gperf
 BuildRequires:	gstreamer-devel >= 0.10
 BuildRequires:	gstreamer-plugins-base-devel
-BuildRequires:	gtk-doc
+BuildRequires:	gtk+2-devel >= 2:2.10.0
+BuildRequires:	gtk-doc >= 1.10
 BuildRequires:	libicu-devel
 BuildRequires:	libjpeg-devel
 BuildRequires:	libpng-devel
-BuildRequires:	librsvg-devel >= 2.2.0
-BuildRequires:	libsoup-devel >= 2.27.4
+BuildRequires:	libsoup-devel >= 2.28.0
 BuildRequires:	libstdc++-devel
 BuildRequires:	libtool >= 2:1.5
+BuildRequires:	libxml2-devel >= 1:2.6.30
 BuildRequires:	libxslt-devel
-BuildRequires:	pango-devel
 BuildRequires:	pkgconfig
 BuildRequires:	sqlite3-devel
 BuildRequires:	xorg-lib-libXft-devel >= 2.0.0
@@ -48,10 +46,10 @@ Summary:	Development files for webkit
 Summary(pl.UTF-8):	Pliki programistyczne webkit
 Group:		X11/Development/Libraries
 Requires:	%{name} = %{version}-%{release}
-Requires:	curl-devel >= 7.11.0
 Requires:	fontconfig-devel >= 1.0.0
-Requires:	libicu-devel
-Requires:	librsvg-devel >= 2.2.0
+Requires:	glib2-devel >= 1:2.22.0
+Requires:	gtk+2-devel >= 2:2.10.0
+Requires:	libsoup-devel >= 2.28.0
 Requires:	libstdc++-devel
 Requires:	xorg-lib-libXft-devel >= 2.0.0
 
@@ -73,10 +71,7 @@ Pliki programistyczne webkit.
 %{__autoconf}
 %configure \
 	--enable-dom-storage \
-	--enable-gnomekeyring \
 	--enable-icon-database \
-	--enable-svg-experimental \
-	--enable-svg-filters \
 	--enable-video
 %{__make}
 
