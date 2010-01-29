@@ -15,6 +15,7 @@ BuildRequires:	bison
 BuildRequires:	enchant-devel >= 0.22
 BuildRequires:	flex
 BuildRequires:	fontconfig-devel >= 1.0.0
+BuildRequires:	gettext-devel
 BuildRequires:	glib2-devel >= 1:2.22.0
 BuildRequires:	gperf
 BuildRequires:	gstreamer-devel >= 0.10
