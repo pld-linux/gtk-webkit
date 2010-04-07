@@ -16,6 +16,7 @@ BuildRequires:	enchant-devel >= 0.22
 BuildRequires:	flex >= 2.5.33
 BuildRequires:	fontconfig-devel >= 2.4.0
 BuildRequires:	gettext-devel
+BuildRequires:	gir-repository-devel
 BuildRequires:	glib2-devel >= 1:2.22.0
 BuildRequires:	gobject-introspection-devel >= 0.6.2
 BuildRequires:	gperf
