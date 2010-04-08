@@ -3,7 +3,7 @@ Summary:	Port of WebKit embeddable web component to GTK+
 Summary(pl.UTF-8):	Port osadzalnego komponentu WWW WebKit do GTK+
 Name:		gtk-webkit
 Version:	1.2.0
-Release:	2
+Release:	3
 License:	BSD-like
 Group:		X11/Libraries
 Source0:	http://webkitgtk.org/webkit-%{version}.tar.gz
@@ -22,7 +22,7 @@ BuildRequires:	gobject-introspection-devel >= 0.6.2
 BuildRequires:	gperf
 BuildRequires:	gstreamer-devel >= 0.10
 BuildRequires:	gstreamer-plugins-base-devel >= 0.10.25
-BuildRequires:	gtk+2-devel >= 2:2.10.0
+BuildRequires:	gtk+2-devel >= 2:2.20.0
 BuildRequires:	gtk-doc >= 1.10
 BuildRequires:	libicu-devel
 BuildRequires:	libjpeg-devel
@@ -36,8 +36,9 @@ BuildRequires:	pkgconfig
 BuildRequires:	sqlite3-devel
 BuildRequires:	xorg-lib-libXft-devel >= 2.0.0
 BuildRequires:	xorg-lib-libXt-devel
-Conflicts:	gir-repository < 0.6.5-7
+Requires:	gtk+2 >= 2.20.0
 Requires:	libsoup >= 2.30.0
+Conflicts:	gir-repository < 0.6.5-7
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
