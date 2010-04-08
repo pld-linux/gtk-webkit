@@ -36,7 +36,7 @@ BuildRequires:	pkgconfig
 BuildRequires:	sqlite3-devel
 BuildRequires:	xorg-lib-libXft-devel >= 2.0.0
 BuildRequires:	xorg-lib-libXt-devel
-Requires:	gtk+2 >= 2.20.0
+Requires:	gtk+2 >= 2:2.20.0
 Requires:	libsoup >= 2.30.0
 Conflicts:	gir-repository < 0.6.5-7
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -54,7 +54,7 @@ Group:		X11/Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 Requires:	fontconfig-devel >= 1.0.0
 Requires:	glib2-devel >= 1:2.22.0
-Requires:	gtk+2-devel >= 2:2.10.0
+Requires:	gtk+2-devel >= 2:2.20.0
 Requires:	libicu-devel
 Requires:	libsoup-devel >= 2.30.0
 Requires:	libstdc++-devel
