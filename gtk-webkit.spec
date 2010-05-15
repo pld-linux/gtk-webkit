@@ -18,6 +18,7 @@ BuildRequires:	fontconfig-devel >= 2.4.0
 BuildRequires:	gettext-devel
 BuildRequires:	gir-repository-devel
 BuildRequires:	glib2-devel >= 1:2.22.0
+BuildRequires:	glibc-misc
 BuildRequires:	gobject-introspection-devel >= 0.6.2
 BuildRequires:	gperf
 BuildRequires:	gstreamer-devel >= 0.10
