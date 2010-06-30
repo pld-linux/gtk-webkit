@@ -3,12 +3,13 @@ Summary:	Port of WebKit embeddable web component to GTK+
 Summary(pl.UTF-8):	Port osadzalnego komponentu WWW WebKit do GTK+
 Name:		gtk-webkit
 Version:	1.2.1
-Release:	3
+Release:	4
 License:	BSD-like
 Group:		X11/Libraries
 Source0:	http://webkitgtk.org/webkit-%{version}.tar.gz
 # Source0-md5:	eb6f473d8d7be56ecd226e7dd55dcb9b
 URL:		http://webkitgtk.org/
+Patch0:		%{name}-icu44.patch
 BuildRequires:	autoconf >= 2.59
 BuildRequires:	automake
 BuildRequires:	bison
@@ -25,7 +26,7 @@ BuildRequires:	gstreamer-devel >= 0.10
 BuildRequires:	gstreamer-plugins-base-devel >= 0.10.25
 BuildRequires:	gtk+2-devel >= 2:2.20.0
 BuildRequires:	gtk-doc >= 1.10
-BuildRequires:	libicu-devel
+BuildRequires:	libicu-devel >= 4.4.1
 BuildRequires:	libjpeg-devel
 BuildRequires:	libpng-devel
 BuildRequires:	libsoup-devel >= 2.30.0
@@ -69,6 +70,7 @@ Pliki programistyczne WebKit.
 
 %prep
 %setup -q -n webkit-%{version}
+%patch0 -p2
 
 %build
 %{__gtkdocize}
@@ -83,6 +85,7 @@ Pliki programistyczne WebKit.
 	--enable-icon-database \
 	--enable-introspection \
 	--enable-video
+
 %{__make}
 
 %install
