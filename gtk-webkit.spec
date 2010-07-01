@@ -16,6 +16,7 @@ BuildRequires:	bison
 BuildRequires:	enchant-devel >= 0.22
 BuildRequires:	flex >= 2.5.33
 BuildRequires:	fontconfig-devel >= 2.4.0
+BuildRequires:	geoclue-devel
 BuildRequires:	gettext-devel
 BuildRequires:	gir-repository-devel
 BuildRequires:	glib2-devel >= 1:2.22.0
@@ -26,7 +27,7 @@ BuildRequires:	gstreamer-devel >= 0.10
 BuildRequires:	gstreamer-plugins-base-devel >= 0.10.25
 BuildRequires:	gtk+2-devel >= 2:2.20.0
 BuildRequires:	gtk-doc >= 1.10
-BuildRequires:	libicu-devel >= 4.4.1
+BuildRequires:	libicu-devel >= 4.2.1
 BuildRequires:	libjpeg-devel
 BuildRequires:	libpng-devel
 BuildRequires:	libsoup-devel >= 2.30.0
@@ -81,7 +82,9 @@ Pliki programistyczne WebKit.
 %{__autoconf}
 %configure \
 	--disable-silent-rules \
+	--enable-3D-transforms \
 	--enable-dom-storage \
+	--enable-geolocation \
 	--enable-icon-database \
 	--enable-introspection \
 	--enable-video
