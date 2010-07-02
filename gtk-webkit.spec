@@ -19,7 +19,7 @@ BuildRequires:	gettext-devel
 BuildRequires:	gir-repository-devel
 BuildRequires:	glib2-devel >= 1:2.22.0
 BuildRequires:	glibc-misc
-BuildRequires:	gobject-introspection-devel >= 0.6.2
+BuildRequires:	gobject-introspection-devel >= 0.6.15
 BuildRequires:	gperf
 BuildRequires:	gstreamer-devel >= 0.10
 BuildRequires:	gstreamer-plugins-base-devel >= 0.10.25
