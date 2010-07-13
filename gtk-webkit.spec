@@ -1,4 +1,8 @@
 # TODO: optflags
+#
+# Conditional build:
+%bcond_without	introspection	# disable introspection
+
 Summary:	Port of WebKit embeddable web component to GTK+
 Summary(pl.UTF-8):	Port osadzalnego komponentu WWW WebKit do GTK+
 Name:		gtk-webkit
@@ -18,10 +22,10 @@ BuildRequires:	flex >= 2.5.33
 BuildRequires:	fontconfig-devel >= 2.4.0
 BuildRequires:	geoclue-devel
 BuildRequires:	gettext-devel
-BuildRequires:	gir-repository-devel
+%{?with_introspection:BuildRequires:	gir-repository-devel}
 BuildRequires:	glib2-devel >= 1:2.22.0
 BuildRequires:	glibc-misc
-BuildRequires:	gobject-introspection-devel >= 0.6.2
+%{?with_introspection:BuildRequires:	gobject-introspection-devel >= 0.6.2}
 BuildRequires:	gperf
 BuildRequires:	gstreamer-devel >= 0.10
 BuildRequires:	gstreamer-plugins-base-devel >= 0.10.25
@@ -41,7 +45,7 @@ BuildRequires:	xorg-lib-libXft-devel >= 2.0.0
 BuildRequires:	xorg-lib-libXt-devel
 Requires:	gtk+2 >= 2:2.20.0
 Requires:	libsoup >= 2.30.0
-Conflicts:	gir-repository < 0.6.5-7
+%{?with_introspection:Conflicts:	gir-repository < 0.6.5-7}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -86,7 +90,7 @@ Pliki programistyczne WebKit.
 	--enable-dom-storage \
 	--enable-geolocation \
 	--enable-icon-database \
-	--enable-introspection \
+	--%{!?with_introspection:dis}%{?with_introspection:en}able-introspection \
 	--enable-video
 
 %{__make}
@@ -110,8 +114,10 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/jsc
 %attr(755,root,root) %{_libdir}/libwebkit-1.0.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libwebkit-1.0.so.2
+%if %{with introspection}
 %{_libdir}/girepository-1.0/JSCore-1.0.typelib
 %{_libdir}/girepository-1.0/WebKit-1.0.typelib
+%endif
 %dir %{_datadir}/webkit-1.0
 %{_datadir}/webkit-1.0/images
 %{_datadir}/webkit-1.0/resources
@@ -121,7 +127,9 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libwebkit-1.0.so
 %{_libdir}/libwebkit-1.0.la
+%if %{with introspection}
 %{_datadir}/gir-1.0/JSCore-1.0.gir
 %{_datadir}/gir-1.0/WebKit-1.0.gir
+%endif
 %{_includedir}/webkit-1.0
 %{_pkgconfigdir}/webkit-1.0.pc
