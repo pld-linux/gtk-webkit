@@ -74,7 +74,6 @@ Pliki programistyczne WebKit.
 
 %prep
 %setup -q -n webkit-%{version}
-%patch0 -p2
 
 # http://trac.webkit.org/browser/trunk/WebKit/gtk/JSCore.gir.in
 %{__sed} -i -e 's,repository version="1.0",repository version="1.1",' WebKit/gtk/JSCore-1.0.gir
