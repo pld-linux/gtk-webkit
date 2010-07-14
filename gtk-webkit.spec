@@ -1,4 +1,8 @@
 # TODO: optflags
+#
+# Conditional build:
+%bcond_without	introspection	# disable introspection
+
 Summary:	Port of WebKit embeddable web component to GTK+
 Summary(pl.UTF-8):	Port osadzalnego komponentu WWW WebKit do GTK+
 Name:		gtk-webkit
@@ -15,17 +19,18 @@ BuildRequires:	bison
 BuildRequires:	enchant-devel >= 0.22
 BuildRequires:	flex >= 2.5.33
 BuildRequires:	fontconfig-devel >= 2.4.0
+BuildRequires:	geoclue-devel
 BuildRequires:	gettext-devel
-BuildRequires:	gir-repository-devel
+%{?with_introspection:BuildRequires:	gir-repository-devel}
 BuildRequires:	glib2-devel >= 1:2.22.0
 BuildRequires:	glibc-misc
-BuildRequires:	gobject-introspection-devel >= 0.6.15
+%{?with_introspection:BuildRequires:	gobject-introspection-devel >= 0.6.2}
 BuildRequires:	gperf
 BuildRequires:	gstreamer-devel >= 0.10
 BuildRequires:	gstreamer-plugins-base-devel >= 0.10.25
 BuildRequires:	gtk+2-devel >= 2:2.20.0
 BuildRequires:	gtk-doc >= 1.10
-BuildRequires:	libicu-devel
+BuildRequires:	libicu-devel >= 4.2.1
 BuildRequires:	libjpeg-devel
 BuildRequires:	libpng-devel
 BuildRequires:	libsoup-devel >= 2.30.0
@@ -39,7 +44,7 @@ BuildRequires:	xorg-lib-libXft-devel >= 2.0.0
 BuildRequires:	xorg-lib-libXt-devel
 Requires:	gtk+2 >= 2:2.20.0
 Requires:	libsoup >= 2.30.0
-Conflicts:	gir-repository < 0.6.5-7
+%{?with_introspection:Conflicts:	gir-repository < 0.6.5-7}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -69,6 +74,10 @@ Pliki programistyczne WebKit.
 
 %prep
 %setup -q -n webkit-%{version}
+%patch0 -p2
+
+# http://trac.webkit.org/browser/trunk/WebKit/gtk/JSCore.gir.in
+%{__sed} -i -e 's,repository version="1.0",repository version="1.1",' WebKit/gtk/JSCore-1.0.gir
 
 %build
 %{__gtkdocize}
@@ -79,10 +88,13 @@ Pliki programistyczne WebKit.
 %{__autoconf}
 %configure \
 	--disable-silent-rules \
+	--enable-3D-transforms \
 	--enable-dom-storage \
+	--enable-geolocation \
 	--enable-icon-database \
-	--enable-introspection \
+	--%{!?with_introspection:dis}%{?with_introspection:en}able-introspection \
 	--enable-video
+
 %{__make}
 
 %install
@@ -104,8 +116,10 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/jsc
 %attr(755,root,root) %{_libdir}/libwebkit-1.0.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libwebkit-1.0.so.2
+%if %{with introspection}
 %{_libdir}/girepository-1.0/JSCore-1.0.typelib
 %{_libdir}/girepository-1.0/WebKit-1.0.typelib
+%endif
 %dir %{_datadir}/webkit-1.0
 %{_datadir}/webkit-1.0/images
 %{_datadir}/webkit-1.0/resources
@@ -115,7 +129,9 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libwebkit-1.0.so
 %{_libdir}/libwebkit-1.0.la
+%if %{with introspection}
 %{_datadir}/gir-1.0/JSCore-1.0.gir
 %{_datadir}/gir-1.0/WebKit-1.0.gir
+%endif
 %{_includedir}/webkit-1.0
 %{_pkgconfigdir}/webkit-1.0.pc
