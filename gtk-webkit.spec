@@ -6,14 +6,13 @@
 Summary:	Port of WebKit embeddable web component to GTK+
 Summary(pl.UTF-8):	Port osadzalnego komponentu WWW WebKit do GTK+
 Name:		gtk-webkit
-Version:	1.2.2
+Version:	1.2.3
 Release:	1
 License:	BSD-like
 Group:		X11/Libraries
 Source0:	http://webkitgtk.org/webkit-%{version}.tar.gz
-# Source0-md5:	40338001324a38b977c163291e8816d3
+# Source0-md5:	0ab5c478a6f5b74a1ae96bf13a456662
 URL:		http://webkitgtk.org/
-Patch0:		%{name}-icu44.patch
 BuildRequires:	autoconf >= 2.59
 BuildRequires:	automake
 BuildRequires:	bison
@@ -75,7 +74,6 @@ Pliki programistyczne WebKit.
 
 %prep
 %setup -q -n webkit-%{version}
-%patch0 -p2
 
 # http://trac.webkit.org/browser/trunk/WebKit/gtk/JSCore.gir.in
 %{__sed} -i -e 's,repository version="1.0",repository version="1.1",' WebKit/gtk/JSCore-1.0.gir
