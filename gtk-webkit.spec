@@ -102,7 +102,7 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-%find_lang webkit
+%find_lang webkit-2.0
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -110,11 +110,11 @@ rm -rf $RPM_BUILD_ROOT
 %post	-p /sbin/ldconfig
 %postun	-p /sbin/ldconfig
 
-%files -f webkit.lang
+%files -f webkit-2.0.lang
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_bindir}/jsc
-%attr(755,root,root) %{_libdir}/libwebkit-1.0.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libwebkit-1.0.so.2
+%attr(755,root,root) %{_bindir}/jsc-1
+%attr(755,root,root) %{_libdir}/libwebkitgtk-1.0.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libwebkitgtk-1.0.so.0
 %if %{with introspection}
 %{_libdir}/girepository-1.0/JSCore-1.0.typelib
 %{_libdir}/girepository-1.0/WebKit-1.0.typelib
@@ -126,8 +126,8 @@ rm -rf $RPM_BUILD_ROOT
 
 %files devel
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/libwebkit-1.0.so
-%{_libdir}/libwebkit-1.0.la
+%attr(755,root,root) %{_libdir}/libwebkitgtk-1.0.so
+%{_libdir}/libwebkitgtk-1.0.la
 %if %{with introspection}
 %{_datadir}/gir-1.0/JSCore-1.0.gir
 %{_datadir}/gir-1.0/WebKit-1.0.gir
