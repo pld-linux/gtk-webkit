@@ -7,11 +7,12 @@ Summary:	Port of WebKit embeddable web component to GTK+
 Summary(pl.UTF-8):	Port osadzalnego komponentu WWW WebKit do GTK+
 Name:		gtk-webkit
 Version:	1.2.4
-Release:	1
+Release:	2
 License:	BSD-like
 Group:		X11/Libraries
 Source0:	http://webkitgtk.org/webkit-%{version}.tar.gz
 # Source0-md5:	dc3a92dd0e8c2e70263fbfdf809b51a5
+Patch0:		gobject-introspection.patch
 URL:		http://webkitgtk.org/
 BuildRequires:	autoconf >= 2.59
 BuildRequires:	automake
@@ -21,10 +22,9 @@ BuildRequires:	flex >= 2.5.33
 BuildRequires:	fontconfig-devel >= 2.4.0
 BuildRequires:	geoclue-devel
 BuildRequires:	gettext-devel
-%{?with_introspection:BuildRequires:	gir-repository-devel}
 BuildRequires:	glib2-devel >= 1:2.22.0
 BuildRequires:	glibc-misc
-%{?with_introspection:BuildRequires:	gobject-introspection-devel >= 0.6.2}
+%{?with_introspection:BuildRequires:	gobject-introspection-devel >= 0.9.5}
 BuildRequires:	gperf
 BuildRequires:	gstreamer-devel >= 0.10
 BuildRequires:	gstreamer-plugins-base-devel >= 0.10.25
@@ -33,7 +33,7 @@ BuildRequires:	gtk-doc >= 1.10
 BuildRequires:	libicu-devel >= 4.2.1
 BuildRequires:	libjpeg-devel
 BuildRequires:	libpng-devel
-BuildRequires:	libsoup-devel >= 2.30.0
+BuildRequires:	libsoup-devel >= 2.30.2-4
 BuildRequires:	libstdc++-devel
 BuildRequires:	libtool >= 2:1.5
 BuildRequires:	libxml2-devel >= 1:2.6.30
@@ -74,9 +74,7 @@ Pliki programistyczne WebKit.
 
 %prep
 %setup -q -n webkit-%{version}
-
-# http://trac.webkit.org/browser/trunk/WebKit/gtk/JSCore.gir.in
-%{__sed} -i -e 's,repository version="1.0",repository version="1.1",' WebKit/gtk/JSCore-1.0.gir
+%patch0 -p1
 
 %build
 %{__gtkdocize}
