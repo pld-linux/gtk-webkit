@@ -7,7 +7,7 @@ Summary:	Port of WebKit embeddable web component to GTK+
 Summary(pl.UTF-8):	Port osadzalnego komponentu WWW WebKit do GTK+
 Name:		gtk-webkit
 Version:	1.2.4
-Release:	3
+Release:	4
 License:	BSD-like
 Group:		X11/Libraries
 Source0:	http://webkitgtk.org/webkit-%{version}.tar.gz
@@ -17,9 +17,11 @@ URL:		http://webkitgtk.org/
 BuildRequires:	autoconf >= 2.59
 BuildRequires:	automake
 BuildRequires:	bison
+BuildRequires:	cairo-devel >= 1.6
 BuildRequires:	enchant-devel >= 0.22
 BuildRequires:	flex >= 2.5.33
 BuildRequires:	fontconfig-devel >= 2.4.0
+BuildRequires:	freetype-devel >= 1:2.1.8
 BuildRequires:	geoclue-devel
 BuildRequires:	gettext-devel
 BuildRequires:	glib2-devel >= 1:2.22.0
@@ -37,10 +39,10 @@ BuildRequires:	libsoup-devel >= 2.30.2-4
 BuildRequires:	libstdc++-devel
 BuildRequires:	libtool >= 2:1.5
 BuildRequires:	libxml2-devel >= 1:2.6.30
-BuildRequires:	libxslt-devel
+BuildRequires:	libxslt-devel >= 1.1.7
+BuildRequires:	pango-devel >= 1:1.12
 BuildRequires:	pkgconfig
 BuildRequires:	sqlite3-devel
-BuildRequires:	xorg-lib-libXft-devel >= 2.0.0
 BuildRequires:	xorg-lib-libXt-devel
 Requires:	gtk+2 >= 2:2.20.0
 Requires:	libsoup >= 2.30.0
@@ -58,53 +60,24 @@ Summary:	Development files for WebKit
 Summary(pl.UTF-8):	Pliki programistyczne WebKit
 Group:		X11/Development/Libraries
 Requires:	%{name} = %{version}-%{release}
-Requires:	atk-devel
-Requires:	cairo-devel
-Requires:	dbus-devel
-Requires:	dbus-glib-devel
-Requires:	enchant-devel
-Requires:	expat-devel
-Requires:	fontconfig-devel >= 1.0.0
-Requires:	freetype-devel
-Requires:	gdk-pixbuf2-devel
+Requires:	cairo-devel >= 1.6
+Requires:	enchant-devel >= 0.22
+Requires:	fontconfig-devel >= 2.4.0
+Requires:	freetype-devel >= 1:2.1.8
 Requires:	geoclue-devel
 Requires:	glib2-devel >= 1:2.22.0
-Requires:	gnutls-devel
-Requires:	gstreamer-devel
-Requires:	gstreamer-plugins-base-devel
+Requires:	gstreamer-devel >= 0.10
+Requires:	gstreamer-plugins-base-devel >= 0.10.25
 Requires:	gtk+2-devel >= 2:2.20.0
-Requires:	libgcrypt-devel
-Requires:	libgpg-error-devel
-Requires:	libicu-devel
-Requires:	libjpeg-devel-8b
+Requires:	libicu-devel >= 4.2.1
+Requires:	libjpeg-devel
 Requires:	libpng-devel
 Requires:	libsoup-devel >= 2.30.0
 Requires:	libstdc++-devel
-Requires:	libtasn1-devel
-Requires:	libuuid-devel
-Requires:	libxcb-devel
-Requires:	libxml2-devel
-Requires:	libxslt-devel
-Requires:	pango-devel
-Requires:	pcre-devel
-Requires:	pixman-devel
+Requires:	libxml2-devel >= 1:2.6.30
+Requires:	libxslt-devel >= 1.1.7
+Requires:	pango-devel >= 1:1.12
 Requires:	sqlite3-devel
-Requires:	xcb-util-devel
-Requires:	xorg-lib-libICE-devel
-Requires:	xorg-lib-libSM-devel
-Requires:	xorg-lib-libX11-devel
-Requires:	xorg-lib-libXau-devel
-Requires:	xorg-lib-libXcomposite-devel
-Requires:	xorg-lib-libXcursor-devel
-Requires:	xorg-lib-libXdamage-devel
-Requires:	xorg-lib-libXdmcp-devel
-Requires:	xorg-lib-libXext-devel
-Requires:	xorg-lib-libXfixes-devel
-Requires:	xorg-lib-libXft-devel >= 2.0.0
-Requires:	xorg-lib-libXi-devel
-Requires:	xorg-lib-libXinerama-devel
-Requires:	xorg-lib-libXrandr-devel
-Requires:	xorg-lib-libXrender-devel
 Requires:	xorg-lib-libXt-devel
 
 %description devel
@@ -131,7 +104,8 @@ Pliki programistyczne WebKit.
 	--enable-geolocation \
 	--enable-icon-database \
 	--%{!?with_introspection:dis}%{?with_introspection:en}able-introspection \
-	--enable-video
+	--enable-video \
+	--with-font-backend=freetype
 
 %{__make}
 
