@@ -85,7 +85,7 @@ Requires:	libuuid-devel
 Requires:	libxcb-devel
 Requires:	libxml2-devel
 Requires:	libxslt-devel
-Requires:	pango
+Requires:	pango-devel
 Requires:	pcre-devel
 Requires:	pixman-devel
 Requires:	sqlite3-devel
