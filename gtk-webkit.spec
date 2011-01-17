@@ -44,8 +44,14 @@ BuildRequires:	pango-devel >= 1:1.12
 BuildRequires:	pkgconfig
 BuildRequires:	sqlite3-devel
 BuildRequires:	xorg-lib-libXt-devel
+Requires:	cairo >= 1.6
+Requires:	enchant >= 0.22
+Requires:	gstreamer-plugins-base >= 0.10.25
 Requires:	gtk+2 >= 2:2.20.0
 Requires:	libsoup >= 2.30.0
+Requires:	libxml2 >= 1:2.6.30
+Requires:	libxslt >= 1.1.7
+Requires:	pango >= 1:1.12
 %{?with_introspection:Conflicts:	gir-repository < 0.6.5-7}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -125,6 +131,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -f webkit.lang
 %defattr(644,root,root,755)
+%doc ChangeLog
 %attr(755,root,root) %{_bindir}/jsc
 %attr(755,root,root) %{_libdir}/libwebkit-1.0.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libwebkit-1.0.so.2
