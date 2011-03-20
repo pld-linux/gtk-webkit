@@ -98,11 +98,11 @@ Pliki programistyczne WebKit.
 
 %build
 %{__gtkdocize}
-%{__aclocal} -I autotools
 %{__libtoolize}
+%{__aclocal} -I autotools
+%{__autoconf}
 %{__autoheader}
 %{__automake}
-%{__autoconf}
 %configure \
 	--disable-silent-rules \
 	--enable-3D-transforms \
