@@ -7,7 +7,7 @@ Summary:	Port of WebKit embeddable web component to GTK+
 Summary(pl.UTF-8):	Port osadzalnego komponentu WWW WebKit do GTK+
 Name:		gtk-webkit
 Version:	1.2.7
-Release:	3
+Release:	4
 License:	BSD-like
 Group:		X11/Libraries
 Source0:	http://webkitgtk.org/webkit-%{version}.tar.gz
@@ -121,6 +121,8 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
+%{__rm} $RPM_BUILD_ROOT%{_libdir}/libwebkit-1.0.la
+
 %find_lang webkit
 
 %clean
@@ -147,7 +149,6 @@ rm -rf $RPM_BUILD_ROOT
 %files devel
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libwebkit-1.0.so
-%{_libdir}/libwebkit-1.0.la
 %if %{with introspection}
 %{_datadir}/gir-1.0/JSCore-1.0.gir
 %{_datadir}/gir-1.0/WebKit-1.0.gir
