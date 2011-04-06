@@ -7,7 +7,7 @@ Summary:	Port of WebKit embeddable web component to GTK+
 Summary(pl.UTF-8):	Port osadzalnego komponentu WWW WebKit do GTK+
 Name:		gtk-webkit
 Version:	1.2.7
-Release:	4
+Release:	5
 License:	BSD-like
 Group:		X11/Libraries
 Source0:	http://webkitgtk.org/webkit-%{version}.tar.gz
@@ -18,6 +18,7 @@ BuildRequires:	autoconf >= 2.59
 BuildRequires:	automake
 BuildRequires:	bison
 BuildRequires:	cairo-devel >= 1.6
+BuildRequires:	cairo-gobject-devel >= 1.6
 BuildRequires:	enchant-devel >= 0.22
 BuildRequires:	flex >= 2.5.33
 BuildRequires:	fontconfig-devel >= 2.4.0
