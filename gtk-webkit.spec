@@ -7,12 +7,13 @@ Summary:	Port of WebKit embeddable web component to GTK+
 Summary(pl.UTF-8):	Port osadzalnego komponentu WWW WebKit do GTK+
 Name:		gtk-webkit
 Version:	1.2.7
-Release:	9
+Release:	10
 License:	BSD-like
 Group:		X11/Libraries
 Source0:	http://webkitgtk.org/webkit-%{version}.tar.gz
 # Source0-md5:	25c7e548b65aeb6d83c0182c32ef0927
 Patch0:		gobject-introspection.patch
+Patch1:		webkit-gtk-1.2.7-libpng15.patch
 URL:		http://webkitgtk.org/
 BuildRequires:	autoconf >= 2.59
 BuildRequires:	automake
@@ -96,6 +97,7 @@ Pliki programistyczne WebKit.
 %prep
 %setup -q -n webkit-%{version}
 %patch0 -p1
+%patch1 -p0
 
 %build
 %{__gtkdocize}
