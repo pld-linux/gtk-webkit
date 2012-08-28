@@ -6,19 +6,20 @@
 Summary:	Port of WebKit embeddable web component to GTK+
 Summary(pl.UTF-8):	Port osadzalnego komponentu WWW WebKit do GTK+
 Name:		gtk-webkit
-Version:	1.8.1
-Release:	2
+Version:	1.8.2
+Release:	1
 License:	BSD-like
 Group:		X11/Libraries
 Source0:	http://webkitgtk.org/releases/webkit-%{version}.tar.xz
-# Source0-md5:	f2f01b1fdc7262a2eede81ebed0970b2
+# Source0-md5:	f7bd0bd4f323039f15e19c82a9a8313c
 Patch0:		%{name}-am.patch
+Patch1:		%{name}-bison2.6.patch
 URL:		http://webkitgtk.org/
 BuildRequires:	OpenGL-devel
 BuildRequires:	OpenGL-GLX-devel
 BuildRequires:	autoconf >= 2.59
 BuildRequires:	automake
-BuildRequires:	bison
+BuildRequires:	bison >= 1.875
 BuildRequires:	cairo-devel >= 1.10
 BuildRequires:	cairo-gobject-devel >= 1.10
 BuildRequires:	enchant-devel >= 0.22
@@ -53,6 +54,7 @@ BuildRequires:	xz
 BuildRequires:	zlib-devel
 Requires:	cairo >= 1.10
 Requires:	enchant >= 0.22
+Requires:	glib2 >= 1:2.32.0
 Requires:	gstreamer-plugins-base >= 0.10.30
 Requires:	gtk+2 >= 2:2.20.0
 Requires:	libsoup >= 2.38
@@ -102,6 +104,7 @@ Pliki programistyczne WebKit.
 %prep
 %setup -q -n webkit-%{version}
 %patch0 -p1
+%patch1 -p2
 
 %build
 %{__gtkdocize}
