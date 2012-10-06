@@ -1,4 +1,3 @@
-# TODO: optflags
 #
 # Conditional build:
 %bcond_without	introspection	# disable introspection
@@ -6,18 +5,16 @@
 Summary:	Port of WebKit embeddable web component to GTK+
 Summary(pl.UTF-8):	Port osadzalnego komponentu WWW WebKit do GTK+
 Name:		gtk-webkit
-Version:	1.8.2
-Release:	2
+Version:	1.10.0
+Release:	1
 License:	BSD-like
 Group:		X11/Libraries
-Source0:	http://webkitgtk.org/releases/webkit-%{version}.tar.xz
-# Source0-md5:	f7bd0bd4f323039f15e19c82a9a8313c
-Patch0:		%{name}-am.patch
-Patch1:		%{name}-bison2.6.patch
+Source0:	http://webkitgtk.org/releases/webkitgtk-%{version}.tar.xz
+# Source0-md5:	6da450ec7793c0a7873d8c8c2cae4eb8
 URL:		http://webkitgtk.org/
 BuildRequires:	OpenGL-devel
 BuildRequires:	OpenGL-GLX-devel
-BuildRequires:	autoconf >= 2.59
+BuildRequires:	autoconf >= 2.60
 BuildRequires:	automake
 BuildRequires:	bison >= 1.875
 BuildRequires:	cairo-devel >= 1.10
@@ -32,14 +29,14 @@ BuildRequires:	glib2-devel >= 1:2.32.0
 BuildRequires:	glibc-misc
 %{?with_introspection:BuildRequires:	gobject-introspection-devel >= 0.9.5}
 BuildRequires:	gperf
-BuildRequires:	gstreamer-devel >= 0.10
-BuildRequires:	gstreamer-plugins-base-devel >= 0.10.30
+BuildRequires:	gstreamer-devel >= 1.0.0
+BuildRequires:	gstreamer-plugins-base-devel >= 1.0.0
 BuildRequires:	gtk+2-devel >= 2:2.20.0
 BuildRequires:	gtk-doc >= 1.10
 BuildRequires:	libicu-devel >= 4.2.1
 BuildRequires:	libjpeg-devel
 BuildRequires:	libpng-devel
-BuildRequires:	libsoup-devel >= 2.38
+BuildRequires:	libsoup-devel >= 2.40.0
 BuildRequires:	libstdc++-devel
 BuildRequires:	libtool >= 2:1.5
 BuildRequires:	libxml2-devel >= 1:2.6.30
@@ -48,6 +45,7 @@ BuildRequires:	pango-devel >= 1:1.21
 BuildRequires:	pkgconfig
 BuildRequires:	sqlite3-devel >= 3
 BuildRequires:	tar >= 1:1.22
+BuildRequires:	xorg-lib-libXcomposite-devel
 BuildRequires:	xorg-lib-libXrender-devel
 BuildRequires:	xorg-lib-libXt-devel
 BuildRequires:	xz
@@ -55,9 +53,10 @@ BuildRequires:	zlib-devel
 Requires:	cairo >= 1.10
 Requires:	enchant >= 0.22
 Requires:	glib2 >= 1:2.32.0
-Requires:	gstreamer-plugins-base >= 0.10.30
+Requires:	gstreamer >= 1.0.0
+Requires:	gstreamer-plugins-base >= 1.0.0
 Requires:	gtk+2 >= 2:2.20.0
-Requires:	libsoup >= 2.38
+Requires:	libsoup >= 2.40.0
 Requires:	libxml2 >= 1:2.6.30
 Requires:	libxslt >= 1.1.7
 Requires:	pango >= 1:1.21
@@ -81,8 +80,8 @@ Requires:	fontconfig-devel >= 2.4.0
 Requires:	freetype-devel >= 1:2.1.8
 Requires:	geoclue-devel
 Requires:	glib2-devel >= 1:2.32.0
-Requires:	gstreamer-devel >= 0.10
-Requires:	gstreamer-plugins-base-devel >= 0.10.30
+Requires:	gstreamer-devel >= 1.0.0
+Requires:	gstreamer-plugins-base-devel >= 1.0.0
 Requires:	gtk+2-devel >= 2:2.20.0
 Requires:	libicu-devel >= 4.2.1
 Requires:	libjpeg-devel
@@ -102,9 +101,9 @@ Development files for WebKit.
 Pliki programistyczne WebKit.
 
 %prep
-%setup -q -n webkit-%{version}
-%patch0 -p1
-%patch1 -p2
+%setup -q -n webkitgtk-%{version}
+#patch0 -p1
+#patch1 -p2
 
 %build
 %{__gtkdocize}
@@ -113,14 +112,21 @@ Pliki programistyczne WebKit.
 %{__autoconf}
 %{__autoheader}
 %{__automake}
+# replace -g2 with -g1 to not run into 4 GB ar format limit
+# https://bugs.webkit.org/show_bug.cgi?id=91154
+# http://sourceware.org/bugzilla/show_bug.cgi?id=14625
+export CFLAGS="%(echo %{rpmcflags} | sed 's/ -g2/ -g1/g')"
+export CXXFLAGS="%(echo %{rpmcxxflags} | sed 's/ -g2/ -g1/g')"
 %configure \
 	--disable-silent-rules \
+	--disable-webkit2 \
 	--enable-geolocation \
 	--enable-gtk-doc \
 	--enable-icon-database \
 	--enable-introspection%{!?with_introspection:=no} \
 	--enable-video \
 	--with-font-backend=freetype \
+	--with-gstreamer=1.0 \
 	--with-gtk=2.0 \
 	--with-html-dir=%{_gtkdocdir}
 
@@ -137,7 +143,7 @@ rm -rf $RPM_BUILD_ROOT
 # packaged in gtk-webkit3
 %{__rm} -r $RPM_BUILD_ROOT%{_gtkdocdir}/webkitgtk
 
-%find_lang webkit-2.0
+%find_lang webkitgtk-2.0
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -145,7 +151,7 @@ rm -rf $RPM_BUILD_ROOT
 %post	-p /sbin/ldconfig
 %postun	-p /sbin/ldconfig
 
-%files -f webkit-2.0.lang
+%files -f webkitgtk-2.0.lang
 %defattr(644,root,root,755)
 %doc ChangeLog NEWS 
 %attr(755,root,root) %{_bindir}/jsc-1
