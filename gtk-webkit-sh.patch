@@ -1,0 +1,57 @@
+--- webkitgtk-2.0.0/Source/autotools/FindDependencies.m4.orig	2013-03-26 19:25:38.000000000 +0100
++++ webkitgtk-2.0.0/Source/autotools/FindDependencies.m4	2013-04-01 21:33:59.797598840 +0200
+@@ -441,18 +441,18 @@
+ 
+ if test "$with_acceleration_backend" = "opengl"; then
+     if test "$enable_gles2" = "yes"; then
+-        acceleration_backend_description+= "(gles2"
++        acceleration_backend_description="$acceleration_backend_description(gles2"
+         OPENGL_LIBS="-lGLESv2"
+     else
+-        acceleration_backend_description+="(gl"
++        acceleration_backend_description="$acceleration_backend_description(gl"
+         OPENGL_LIBS="-lGL"
+     fi
+     if test "$enable_egl" = "yes"; then
+-        acceleration_backend_description+=", egl"
+-        OPENGL_LIBS+=" -lEGL"
++        acceleration_backend_description="$acceleration_backend_description, egl"
++        OPENGL_LIBS="$OPENGL_LIBS -lEGL"
+     fi
+     if test "$enable_glx" = "yes"; then
+-        acceleration_backend_description+=", glx"
++        acceleration_backend_description="$acceleration_backend_description, glx"
+     fi
+ 
+     # Check whether dlopen() is in the core libc like on FreeBSD, or in a separate
+@@ -460,8 +460,8 @@
+     AC_CHECK_FUNC([dlopen], [], [AC_CHECK_LIB([dl], [dlopen], [DLOPEN_LIBS="-ldl"])])
+     AC_SUBST([DLOPEN_LIBS])
+ 
+-    OPENGL_LIBS+=" $DLOPEN_LIBS"
+-    acceleration_backend_description+=")"
++    OPENGL_LIBS="$OPENGL_LIBS $DLOPEN_LIBS"
++    acceleration_backend_description="$acceleration_backend_description)"
+ fi
+ AC_SUBST([OPENGL_LIBS])
+ 
+--- webkitgtk-2.0.0/Source/autotools/SetupWebKitFeatures.m4.orig	2013-04-12 19:48:10.867922095 +0200
++++ webkitgtk-2.0.0/Source/autotools/SetupWebKitFeatures.m4	2013-04-12 20:02:21.254571037 +0200
+@@ -12,7 +12,7 @@
+ # This list of features represents those selected for release builds.
+ # If you are adding a new or unstable feature, you should mark it
+ # disabled here.
+-read -d '' DEFAULT_FEATURE_DEFINES <<"EOF"
++DEFAULT_FEATURE_DEFINES="
+ 	ENABLE_ACCELERATED_2D_CANVAS=0
+ 	ENABLE_BATTERY_STATUS=0
+ 	ENABLE_BLOB=1
+@@ -107,7 +107,7 @@
+ 	ENABLE_WEB_TIMING=1
+ 	ENABLE_WORKERS=1
+ 	ENABLE_XHR_TIMEOUT=1
+-EOF
++"
+ 
+ if test "$enable_spellcheck" = "yes"; then
+     DEFAULT_FEATURE_DEFINES="$DEFAULT_FEATURE_DEFINES ENABLE_SPELLCHECK=1"

@@ -5,61 +5,76 @@
 Summary:	Port of WebKit embeddable web component to GTK+
 Summary(pl.UTF-8):	Port osadzalnego komponentu WWW WebKit do GTK+
 Name:		gtk-webkit
-Version:	1.10.1
+Version:	2.0.0
 Release:	1
 License:	BSD-like
 Group:		X11/Libraries
 Source0:	http://webkitgtk.org/releases/webkitgtk-%{version}.tar.xz
-# Source0-md5:	28c930cda012391453c476cdacfaca65
+# Source0-md5:	fa231ba8c9cd33575b9692614324be21
+Patch0:		%{name}-sync-builtins.patch
+Patch1:		%{name}-sh.patch
 URL:		http://webkitgtk.org/
-BuildRequires:	OpenGL-devel
+BuildRequires:	EGL-devel
 BuildRequires:	OpenGL-GLX-devel
+BuildRequires:	at-spi2-core-devel >= 2.6.0
 BuildRequires:	autoconf >= 2.60
 BuildRequires:	automake
 BuildRequires:	bison >= 1.875
 BuildRequires:	cairo-devel >= 1.10
-BuildRequires:	cairo-gobject-devel >= 1.10
 BuildRequires:	enchant-devel >= 0.22
 BuildRequires:	flex >= 2.5.33
-BuildRequires:	fontconfig-devel >= 2.4.0
+BuildRequires:	fontconfig-devel >= 2.5.0
 BuildRequires:	freetype-devel >= 1:2.1.8
+BuildRequires:	gcc-c++ >= 6:4.7
 BuildRequires:	geoclue-devel
 BuildRequires:	gettext-devel
-BuildRequires:	glib2-devel >= 1:2.32.0
+BuildRequires:	glib2-devel >= 1:2.36.0
 BuildRequires:	glibc-misc
-%{?with_introspection:BuildRequires:	gobject-introspection-devel >= 0.9.5}
+%{?with_introspection:BuildRequires:	gobject-introspection-devel >= 1.32.0}
 BuildRequires:	gperf
-BuildRequires:	gstreamer-devel >= 1.0.0
-BuildRequires:	gstreamer-plugins-base-devel >= 1.0.0
-BuildRequires:	gtk+2-devel >= 2:2.20.0
+BuildRequires:	gstreamer-devel >= 1.0.3
+BuildRequires:	gstreamer-plugins-base-devel >= 1.0.3
+BuildRequires:	gtk+2-devel >= 2:2.24.10
 BuildRequires:	gtk-doc >= 1.10
+BuildRequires:	harfbuzz-devel >= 0.9.7
 BuildRequires:	libicu-devel >= 4.2.1
 BuildRequires:	libjpeg-devel
 BuildRequires:	libpng-devel
-BuildRequires:	libsoup-devel >= 2.40.0
+BuildRequires:	libsecret-devel
+BuildRequires:	libsoup-devel >= 2.42.0
 BuildRequires:	libstdc++-devel
 BuildRequires:	libtool >= 2:1.5
+BuildRequires:	libwebp-devel
 BuildRequires:	libxml2-devel >= 1:2.6.30
 BuildRequires:	libxslt-devel >= 1.1.7
-BuildRequires:	pango-devel >= 1:1.21
+BuildRequires:	pango-devel >= 1:1.32.0
+BuildRequires:	perl-base
 BuildRequires:	pkgconfig
+BuildRequires:	python
+BuildRequires:	rpmbuild(macros) >= 1.592
+BuildRequires:	ruby
 BuildRequires:	sqlite3-devel >= 3
 BuildRequires:	tar >= 1:1.22
+BuildRequires:	udev-glib-devel
 BuildRequires:	xorg-lib-libXcomposite-devel
+BuildRequires:	xorg-lib-libXdamage-devel
 BuildRequires:	xorg-lib-libXrender-devel
 BuildRequires:	xorg-lib-libXt-devel
 BuildRequires:	xz
 BuildRequires:	zlib-devel
 Requires:	cairo >= 1.10
 Requires:	enchant >= 0.22
-Requires:	glib2 >= 1:2.32.0
-Requires:	gstreamer >= 1.0.0
-Requires:	gstreamer-plugins-base >= 1.0.0
-Requires:	gtk+2 >= 2:2.20.0
-Requires:	libsoup >= 2.40.0
+Requires:	fontconfig-libs >= 2.5.0
+Requires:	freetype >= 1:2.1.8
+Requires:	glib2 >= 1:2.36.0
+Requires:	gstreamer >= 1.0.3
+Requires:	gstreamer-plugins-base >= 1.0.3
+Requires:	gtk+2 >= 2:2.24.10
+Requires:	harfbuzz >= 0.9.7
+Requires:	libsoup >= 2.42.0
 Requires:	libxml2 >= 1:2.6.30
 Requires:	libxslt >= 1.1.7
-Requires:	pango >= 1:1.21
+Requires:	pango >= 1:1.32.0
 %{?with_introspection:Conflicts:	gir-repository < 0.6.5-7}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -74,25 +89,10 @@ Summary:	Development files for WebKit
 Summary(pl.UTF-8):	Pliki programistyczne WebKit
 Group:		X11/Development/Libraries
 Requires:	%{name} = %{version}-%{release}
-Requires:	cairo-devel >= 1.10
-Requires:	enchant-devel >= 0.22
-Requires:	fontconfig-devel >= 2.4.0
-Requires:	freetype-devel >= 1:2.1.8
-Requires:	geoclue-devel
-Requires:	glib2-devel >= 1:2.32.0
-Requires:	gstreamer-devel >= 1.0.0
-Requires:	gstreamer-plugins-base-devel >= 1.0.0
-Requires:	gtk+2-devel >= 2:2.20.0
-Requires:	libicu-devel >= 4.2.1
-Requires:	libjpeg-devel
-Requires:	libpng-devel
-Requires:	libsoup-devel >= 2.38
+Requires:	glib2-devel >= 1:2.36.0
+Requires:	gtk+2-devel >= 2:2.24.10
+Requires:	libsoup-devel >= 2.42.0
 Requires:	libstdc++-devel
-Requires:	libxml2-devel >= 1:2.6.30
-Requires:	libxslt-devel >= 1.1.7
-Requires:	pango-devel >= 1:1.21
-Requires:	sqlite3-devel >= 3
-Requires:	xorg-lib-libXt-devel
 
 %description devel
 Development files for WebKit.
@@ -102,31 +102,23 @@ Pliki programistyczne WebKit.
 
 %prep
 %setup -q -n webkitgtk-%{version}
-#patch0 -p1
-#patch1 -p2
+%patch0 -p1
+%patch1 -p1
 
 %build
-%{__gtkdocize}
 %{__libtoolize}
 %{__aclocal} -I Source/autotools
 %{__autoconf}
 %{__autoheader}
 %{__automake}
-# replace -g2 with -g1 to not run into 4 GB ar format limit
-# https://bugs.webkit.org/show_bug.cgi?id=91154
-# http://sourceware.org/bugzilla/show_bug.cgi?id=14625
-export CFLAGS="%(echo %{rpmcflags} | sed 's/ -g2/ -g1/g')"
-export CXXFLAGS="%(echo %{rpmcxxflags} | sed 's/ -g2/ -g1/g')"
 %configure \
+	--disable-gtk-doc \
 	--disable-silent-rules \
 	--disable-webkit2 \
 	--enable-geolocation \
-	--enable-gtk-doc \
-	--enable-icon-database \
-	--enable-introspection%{!?with_introspection:=no} \
-	--enable-video \
-	--with-font-backend=freetype \
-	--with-gstreamer=1.0 \
+	--enable-glx \
+	%{__enable_disable introspection} \
+	--enable-webgl \
 	--with-gtk=2.0 \
 	--with-html-dir=%{_gtkdocdir}
 
@@ -143,7 +135,7 @@ rm -rf $RPM_BUILD_ROOT
 # packaged in gtk-webkit3
 %{__rm} -r $RPM_BUILD_ROOT%{_gtkdocdir}/webkitgtk
 
-%find_lang webkitgtk-2.0
+%find_lang WebKitGTK-2.0
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -151,9 +143,9 @@ rm -rf $RPM_BUILD_ROOT
 %post	-p /sbin/ldconfig
 %postun	-p /sbin/ldconfig
 
-%files -f webkitgtk-2.0.lang
+%files -f WebKitGTK-2.0.lang
 %defattr(644,root,root,755)
-%doc ChangeLog NEWS 
+%doc ChangeLog NEWS
 %attr(755,root,root) %{_bindir}/jsc-1
 %attr(755,root,root) %{_libdir}/libwebkitgtk-1.0.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libwebkitgtk-1.0.so.0
