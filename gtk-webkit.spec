@@ -5,12 +5,12 @@
 Summary:	Port of WebKit embeddable web component to GTK+
 Summary(pl.UTF-8):	Port osadzalnego komponentu WWW WebKit do GTK+
 Name:		gtk-webkit
-Version:	2.0.0
+Version:	2.0.1
 Release:	1
 License:	BSD-like
 Group:		X11/Libraries
 Source0:	http://webkitgtk.org/releases/webkitgtk-%{version}.tar.xz
-# Source0-md5:	fa231ba8c9cd33575b9692614324be21
+# Source0-md5:	69c2037b6d2644d789d34940eac9c993
 Patch0:		%{name}-sync-builtins.patch
 Patch1:		%{name}-sh.patch
 URL:		http://webkitgtk.org/

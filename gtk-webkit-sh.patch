@@ -35,23 +35,3 @@
  fi
  AC_SUBST([OPENGL_LIBS])
  
---- webkitgtk-2.0.0/Source/autotools/SetupWebKitFeatures.m4.orig	2013-04-12 19:48:10.867922095 +0200
-+++ webkitgtk-2.0.0/Source/autotools/SetupWebKitFeatures.m4	2013-04-12 20:02:21.254571037 +0200
-@@ -12,7 +12,7 @@
- # This list of features represents those selected for release builds.
- # If you are adding a new or unstable feature, you should mark it
- # disabled here.
--read -d '' DEFAULT_FEATURE_DEFINES <<"EOF"
-+DEFAULT_FEATURE_DEFINES="
- 	ENABLE_ACCELERATED_2D_CANVAS=0
- 	ENABLE_BATTERY_STATUS=0
- 	ENABLE_BLOB=1
-@@ -107,7 +107,7 @@
- 	ENABLE_WEB_TIMING=1
- 	ENABLE_WORKERS=1
- 	ENABLE_XHR_TIMEOUT=1
--EOF
-+"
- 
- if test "$enable_spellcheck" = "yes"; then
-     DEFAULT_FEATURE_DEFINES="$DEFAULT_FEATURE_DEFINES ENABLE_SPELLCHECK=1"
