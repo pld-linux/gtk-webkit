@@ -87,8 +87,8 @@ webkit is a port of the WebKit embeddable web component to GTK+.
 webkit to port osadzalnego komponentu WWW WebKit do GTK+.
 
 %package devel
-Summary:	Development files for WebKit
-Summary(pl.UTF-8):	Pliki programistyczne WebKit
+Summary:	Development files for WebKit for GTK+ 2
+Summary(pl.UTF-8):	Pliki programistyczne komponentu WebKit dla GTK+ 2
 Group:		X11/Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 Requires:	glib2-devel >= 1:2.36.0
@@ -97,10 +97,10 @@ Requires:	libsoup-devel >= 2.42.0
 Requires:	libstdc++-devel
 
 %description devel
-Development files for WebKit.
+Development files for WebKit for GTK+ 2.
 
 %description devel -l pl.UTF-8
-Pliki programistyczne WebKit.
+Pliki programistyczne komponentu WebKit dla GTK+ 2.
 
 %prep
 %setup -q -n webkitgtk-%{version}
