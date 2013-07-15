@@ -6,7 +6,7 @@ Summary:	Port of WebKit embeddable web component to GTK+
 Summary(pl.UTF-8):	Port osadzalnego komponentu WWW WebKit do GTK+
 Name:		gtk-webkit
 Version:	2.0.3
-Release:	1
+Release:	2
 License:	BSD-like
 Group:		X11/Libraries
 Source0:	http://webkitgtk.org/releases/webkitgtk-%{version}.tar.xz
@@ -123,7 +123,8 @@ Pliki programistyczne komponentu WebKit dla GTK+ 2.
 	%{__enable_disable introspection} \
 	--enable-webgl \
 	--with-gtk=2.0 \
-	--with-html-dir=%{_gtkdocdir}
+	--with-html-dir=%{_gtkdocdir} \
+	DFLAGS="%{rpmldflags} -fuse-ld=gold"
 
 %{__make} -j1
 
