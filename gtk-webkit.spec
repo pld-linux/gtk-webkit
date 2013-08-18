@@ -13,6 +13,7 @@ Source0:	http://webkitgtk.org/releases/webkitgtk-%{version}.tar.xz
 # Source0-md5:	413be319ba171feed9348d1bede6b0a7
 Patch0:		%{name}-sync-builtins.patch
 Patch1:		%{name}-pl.po.patch
+Patch2:		bison3.patch
 URL:		http://webkitgtk.org/
 BuildRequires:	EGL-devel
 BuildRequires:	OpenGL-GLX-devel
@@ -107,6 +108,7 @@ Pliki programistyczne komponentu WebKit dla GTK+ 2.
 %setup -q -n webkitgtk-%{version}
 %patch0 -p1
 %patch1 -p1
+%patch2 -p1
 
 %build
 %{__libtoolize}
