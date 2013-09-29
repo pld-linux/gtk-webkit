@@ -5,15 +5,13 @@
 Summary:	Port of WebKit embeddable web component to GTK+
 Summary(pl.UTF-8):	Port osadzalnego komponentu WWW WebKit do GTK+
 Name:		gtk-webkit
-Version:	2.0.4
-Release:	2
+Version:	2.2.0
+Release:	1
 License:	BSD-like
 Group:		X11/Libraries
 Source0:	http://webkitgtk.org/releases/webkitgtk-%{version}.tar.xz
-# Source0-md5:	413be319ba171feed9348d1bede6b0a7
+# Source0-md5:	9c337812667c4885ebe29a54084dcd4c
 Patch0:		%{name}-sync-builtins.patch
-Patch1:		%{name}-pl.po.patch
-Patch2:		bison3.patch
 URL:		http://webkitgtk.org/
 BuildRequires:	EGL-devel
 BuildRequires:	OpenGL-GLX-devel
@@ -107,8 +105,6 @@ Pliki programistyczne komponentu WebKit dla GTK+ 2.
 %prep
 %setup -q -n webkitgtk-%{version}
 %patch0 -p1
-%patch1 -p1
-%patch2 -p1
 
 %build
 %{__libtoolize}
@@ -158,20 +154,19 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/libjavascriptcoregtk-1.0.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libjavascriptcoregtk-1.0.so.0
 %if %{with introspection}
-%{_libdir}/girepository-1.0/JSCore-1.0.typelib
+%{_libdir}/girepository-1.0/JavaScriptCore-1.0.typelib
 %{_libdir}/girepository-1.0/WebKit-1.0.typelib
 %endif
 %dir %{_datadir}/webkitgtk-1.0
 %{_datadir}/webkitgtk-1.0/images
 %{_datadir}/webkitgtk-1.0/resources
-%{_datadir}/webkitgtk-1.0/webinspector
 
 %files devel
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libjavascriptcoregtk-1.0.so
 %attr(755,root,root) %{_libdir}/libwebkitgtk-1.0.so
 %if %{with introspection}
-%{_datadir}/gir-1.0/JSCore-1.0.gir
+%{_datadir}/gir-1.0/JavaScriptCore-1.0.gir
 %{_datadir}/gir-1.0/WebKit-1.0.gir
 %endif
 %{_includedir}/webkitgtk-1.0
