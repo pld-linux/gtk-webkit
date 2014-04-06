@@ -5,14 +5,14 @@
 Summary:	Port of WebKit embeddable web component to GTK+
 Summary(pl.UTF-8):	Port osadzalnego komponentu WWW WebKit do GTK+
 Name:		gtk-webkit
-Version:	2.2.4
+Version:	2.4.0
 Release:	1
 License:	BSD-like
 Group:		X11/Libraries
 Source0:	http://webkitgtk.org/releases/webkitgtk-%{version}.tar.xz
-# Source0-md5:	d2af0d2d75f18cac33bd82ee63e22571
-Patch0:		%{name}-sync-builtins.patch
+# Source0-md5:	c759bf11fe4cadd1268630f16a97f7b9
 URL:		http://webkitgtk.org/
+BuildRequires:	/usr/bin/ld.gold
 BuildRequires:	EGL-devel
 BuildRequires:	OpenGL-GLX-devel
 BuildRequires:	at-spi2-core-devel >= 2.6.0
@@ -25,7 +25,7 @@ BuildRequires:	flex >= 2.5.33
 BuildRequires:	fontconfig-devel >= 2.5.0
 BuildRequires:	freetype-devel >= 1:2.1.8
 BuildRequires:	gcc-c++ >= 6:4.7
-BuildRequires:	geoclue-devel
+BuildRequires:	geoclue2-devel >= 2.1.5
 BuildRequires:	gettext-devel
 BuildRequires:	glib2-devel >= 1:2.36.0
 BuildRequires:	glibc-misc
@@ -33,6 +33,7 @@ BuildRequires:	glibc-misc
 BuildRequires:	gperf
 BuildRequires:	gstreamer-devel >= 1.0.3
 BuildRequires:	gstreamer-plugins-base-devel >= 1.0.3
+BuildRequires:	libstdc++-devel >= 6:4.7
 BuildRequires:	gtk+2-devel >= 2:2.24.10
 BuildRequires:	gtk-doc >= 1.10
 BuildRequires:	harfbuzz-devel >= 0.9.7
@@ -63,7 +64,6 @@ BuildRequires:	xorg-lib-libXrender-devel
 BuildRequires:	xorg-lib-libXt-devel
 BuildRequires:	xz
 BuildRequires:	zlib-devel
-BuildRequires:	/usr/bin/ld.gold
 Requires:	cairo >= 1.10
 Requires:	enchant >= 0.22
 Requires:	fontconfig-libs >= 2.5.0
@@ -79,6 +79,9 @@ Requires:	libxslt >= 1.1.7
 Requires:	pango >= 1:1.32.0
 %{?with_introspection:Conflicts:	gir-repository < 0.6.5-7}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
+
+# __once_call, __once_called non-function symbols from libstdc++
+%define		skip_post_check_so	lib.*gtk-1.0.*
 
 %description
 gtk-webkit is a port of the WebKit embeddable web component to GTK+.
@@ -104,7 +107,6 @@ Pliki programistyczne komponentu WebKit dla GTK+ 2.
 
 %prep
 %setup -q -n webkitgtk-%{version}
-%patch0 -p1
 
 %build
 %{__libtoolize}
@@ -135,7 +137,7 @@ rm -rf $RPM_BUILD_ROOT
 # obsoleted by pkg-config
 %{__rm} $RPM_BUILD_ROOT%{_libdir}/lib*-1.0.la
 # packaged in gtk-webkit3
-%{__rm} -r $RPM_BUILD_ROOT%{_gtkdocdir}/webkitgtk
+%{__rm} -r $RPM_BUILD_ROOT%{_gtkdocdir}/{webkitgtk,webkitdomgtk}
 
 %find_lang WebKitGTK-2.0
 
