@@ -26,7 +26,7 @@ BuildRequires:	fontconfig-devel >= 2.5.0
 BuildRequires:	freetype-devel >= 1:2.1.8
 BuildRequires:	gcc-c++ >= 6:4.7
 BuildRequires:	geoclue2-devel >= 2.1.5
-BuildRequires:	gettext-devel
+BuildRequires:	gettext-tools
 BuildRequires:	glib2-devel >= 1:2.36.0
 BuildRequires:	glibc-misc
 %{?with_introspection:BuildRequires:	gobject-introspection-devel >= 1.32.0}
