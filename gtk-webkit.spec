@@ -2,9 +2,10 @@
 # Conditional build:
 %bcond_without	introspection	# disable introspection
 #
-Summary:	Port of WebKit embeddable web component to GTK+
-Summary(pl.UTF-8):	Port osadzalnego komponentu WWW WebKit do GTK+
+Summary:	Port of WebKit embeddable web component to GTK+ 2
+Summary(pl.UTF-8):	Port osadzalnego komponentu WWW WebKit do GTK+ 2
 Name:		gtk-webkit
+# note: 2.4.x is the last series with webkitgtk-1 API and GTK+ 2.x support
 Version:	2.4.8
 Release:	1
 License:	BSD-like
@@ -84,10 +85,10 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %define		skip_post_check_so	lib.*gtk-1.0.*
 
 %description
-gtk-webkit is a port of the WebKit embeddable web component to GTK+.
+gtk-webkit is a port of the WebKit embeddable web component to GTK+ 2.
 
 %description -l pl.UTF-8
-gtk-webkit to port osadzalnego komponentu WWW WebKit do GTK+.
+gtk-webkit to port osadzalnego komponentu WWW WebKit do GTK+ 2.
 
 %package devel
 Summary:	Development files for WebKit for GTK+ 2
