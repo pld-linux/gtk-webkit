@@ -118,7 +118,11 @@ Pliki programistyczne komponentu WebKit dla GTK+ 2.
 %{__autoheader}
 %{__automake}
 %configure \
+%ifarch %{x8664}
 	LDFLAGS="%{rpmldflags} -fuse-ld=gold" \
+%else
+	LDFLAGS="%{rpmldflags} -fuse-ld=bfd -Wl,--no-keep-memory" \
+%endif
 	--disable-gtk-doc \
 	--disable-silent-rules \
 	--disable-webkit2 \
