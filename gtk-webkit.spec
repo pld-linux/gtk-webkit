@@ -2,12 +2,17 @@
 # Conditional build:
 %bcond_without	introspection	# disable introspection
 #
+# it's not possible to build this with debuginfo on 32bit archs due to
+# memory constraints during linking
+%ifarch %{ix86} x32
+%define		_enable_debug_packages		0
+%endif
 Summary:	Port of WebKit embeddable web component to GTK+ 2
 Summary(pl.UTF-8):	Port osadzalnego komponentu WWW WebKit do GTK+ 2
 Name:		gtk-webkit
 # note: 2.4.x is the last series with webkitgtk-1 API and GTK+ 2.x support
 Version:	2.4.11
-Release:	4
+Release:	5
 License:	BSD-like
 Group:		X11/Libraries
 Source0:	http://webkitgtk.org/releases/webkitgtk-%{version}.tar.xz
@@ -121,6 +126,9 @@ Pliki programistyczne komponentu WebKit dla GTK+ 2.
 %{__autoconf}
 %{__autoheader}
 %{__automake}
+%if "%{cxx_version}" >= "4.9"
+CXXFLAGS="%{rpmcxxflags} -fno-delete-null-pointer-checks"
+%endif
 %configure \
 %ifarch %{x8664}
 	LDFLAGS="%{rpmldflags} -fuse-ld=gold" \
