@@ -12,7 +12,7 @@ Summary(pl.UTF-8):	Port osadzalnego komponentu WWW WebKit do GTK+ 2
 Name:		gtk-webkit
 # note: 2.4.x is the last series with webkitgtk-1 API and GTK+ 2.x support
 Version:	2.4.11
-Release:	6
+Release:	7
 License:	BSD-like
 Group:		X11/Libraries
 Source0:	http://webkitgtk.org/releases/webkitgtk-%{version}.tar.xz
@@ -20,6 +20,7 @@ Source0:	http://webkitgtk.org/releases/webkitgtk-%{version}.tar.xz
 Patch0:		x32.patch
 Patch1:		abs.patch
 Patch2:		%{name}-icu59.patch
+Patch3:		%{name}-icu65.patch
 URL:		http://webkitgtk.org/
 BuildRequires:	/usr/bin/ld.gold
 BuildRequires:	EGL-devel
@@ -119,6 +120,7 @@ Pliki programistyczne komponentu WebKit dla GTK+ 2.
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
+%patch3 -p1
 
 %build
 %{__libtoolize}
