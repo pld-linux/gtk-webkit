@@ -1,0 +1,31 @@
+diff --git a/Source/WTF/wtf/gobject/GRefPtr.h b/Source/WTF/wtf/gobject/GRefPtr.h
+index b25b7bb..447015e 100644
+--- a/Source/WTF/wtf/gobject/GRefPtr.h
++++ b/Source/WTF/wtf/gobject/GRefPtr.h
+@@ -25,11 +25,11 @@
+ 
+ #if USE(GLIB)
+ 
++#include <glib-object.h>
++
+ #include <wtf/RefPtr.h>
+ #include <algorithm>
+ 
+-extern "C" void g_object_unref(gpointer);
+-extern "C" gpointer g_object_ref_sink(gpointer);
+ 
+ namespace WTF {
+ 
+--- webkitgtk-2.4.11/Source/WebKit/gtk/GNUmakefile.am.orig	2016-04-10 08:48:37.000000000 +0200
++++ webkitgtk-2.4.11/Source/WebKit/gtk/GNUmakefile.am	2021-08-11 22:06:08.927265391 +0200
+@@ -352,8 +352,8 @@
+ 	@true
+ 
+ stamp-webkitmarshal.cpp: $(WEBKIT_MARSHAL_LIST)
+-	$(AM_V_GEN) echo "extern \"C\" {" > $(GENSOURCES_WEBKIT)/webkitmarshal.cpp && \
+-	$(GLIB_GENMARSHAL) --prefix=webkit_marshal $(WEBKIT_MARSHAL_LIST) --body >> $(GENSOURCES_WEBKIT)/webkitmarshal.cpp && \
++	$(AM_V_GEN)	$(GLIB_GENMARSHAL) --prefix=webkit_marshal $(WEBKIT_MARSHAL_LIST) --body >> $(GENSOURCES_WEBKIT)/webkitmarshal.cpp && \
++	sed -i '1,10s/#ifdef/extern "C" {\n#ifdef/gm' $(GENSOURCES_WEBKIT)/webkitmarshal.cpp && \
+ 	echo '}' >> $(GENSOURCES_WEBKIT)/webkitmarshal.cpp && \
+ 	echo timestamp > $(@F)
+ 

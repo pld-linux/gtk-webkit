@@ -21,6 +21,10 @@ Patch0:		x32.patch
 Patch1:		abs.patch
 Patch2:		%{name}-icu59.patch
 Patch3:		%{name}-icu65.patch
+Patch4:		glib2.68.patch
+Patch5:		icu68.patch
+Patch6:		grammar.patch
+Patch7:		volatile.patch
 URL:		http://webkitgtk.org/
 BuildRequires:	/usr/bin/ld.gold
 BuildRequires:	EGL-devel
@@ -121,6 +125,10 @@ Pliki programistyczne komponentu WebKit dla GTK+ 2.
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
+%patch4 -p1
+%patch5 -p1
+%patch6 -p1
+%patch7 -p1
 
 %build
 %{__libtoolize}
