@@ -12,7 +12,7 @@ Summary(pl.UTF-8):	Port osadzalnego komponentu WWW WebKit do GTK+ 2
 Name:		gtk-webkit
 # note: 2.4.x is the last series with webkitgtk-1 API and GTK+ 2.x support
 Version:	2.4.11
-Release:	10
+Release:	11
 License:	BSD-like
 Group:		X11/Libraries
 Source0:	http://webkitgtk.org/releases/webkitgtk-%{version}.tar.xz
