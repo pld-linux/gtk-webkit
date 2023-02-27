@@ -12,7 +12,7 @@ Summary(pl.UTF-8):	Port osadzalnego komponentu WWW WebKit do GTK+ 2
 Name:		gtk-webkit
 # note: 2.4.x is the last series with webkitgtk-1 API and GTK+ 2.x support
 Version:	2.4.11
-Release:	12
+Release:	13
 License:	BSD-like
 Group:		X11/Libraries
 Source0:	http://webkitgtk.org/releases/webkitgtk-%{version}.tar.xz
@@ -96,6 +96,9 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 # __once_call, __once_called non-function symbols from libstdc++
 %define		skip_post_check_so	lib.*gtk-1.0.*
+
+# JSStringRef uses "!this" comparisons (UB)
+%define		specflags	-fno-delete-null-pointer-checks
 
 %description
 gtk-webkit is a port of the WebKit embeddable web component to GTK+ 2.
