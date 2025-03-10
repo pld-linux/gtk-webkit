@@ -1,6 +1,6 @@
 #
 # Conditional build:
-%bcond_without	introspection	# disable introspection
+%bcond_without	introspection	# GObject introspection
 #
 # it's not possible to build this with debuginfo on 32bit archs due to
 # memory constraints during linking
@@ -15,7 +15,7 @@ Version:	2.4.11
 Release:	14
 License:	BSD-like
 Group:		X11/Libraries
-Source0:	http://webkitgtk.org/releases/webkitgtk-%{version}.tar.xz
+Source0:	https://webkitgtk.org/releases/webkitgtk-%{version}.tar.xz
 # Source0-md5:	24a25ccc30a7914ae50922aedf24b7bc
 Patch0:		x32.patch
 Patch1:		abs.patch
@@ -25,6 +25,8 @@ Patch4:		glib2.68.patch
 Patch5:		icu68.patch
 Patch6:		grammar.patch
 Patch7:		volatile.patch
+Patch8:		%{name}-c++14.patch
+Patch9:		%{name}-libxml2.patch
 URL:		http://webkitgtk.org/
 BuildRequires:	/usr/bin/ld.gold
 BuildRequires:	EGL-devel
@@ -47,7 +49,6 @@ BuildRequires:	glibc-misc
 BuildRequires:	gperf
 BuildRequires:	gstreamer-devel >= 1.0.3
 BuildRequires:	gstreamer-plugins-base-devel >= 1.0.3
-BuildRequires:	libstdc++-devel >= 6:4.7
 BuildRequires:	gtk+2-devel >= 2:2.24.10
 BuildRequires:	gtk-doc >= 1.10
 BuildRequires:	harfbuzz-devel >= 0.9.7
@@ -57,7 +58,7 @@ BuildRequires:	libjpeg-devel
 BuildRequires:	libpng-devel
 BuildRequires:	libsecret-devel
 BuildRequires:	libsoup-devel >= 2.42.0
-BuildRequires:	libstdc++-devel
+BuildRequires:	libstdc++-devel >= 6:7
 # libtool with -fuse-ld= gcc option support
 BuildRequires:	libtool >= 2:2.4.2-13
 BuildRequires:	libwebp-devel
@@ -114,7 +115,7 @@ Requires:	%{name} = %{version}-%{release}
 Requires:	glib2-devel >= 1:2.36.0
 Requires:	gtk+2-devel >= 2:2.24.10
 Requires:	libsoup-devel >= 2.42.0
-Requires:	libstdc++-devel
+Requires:	libstdc++-devel >= 6:7
 
 %description devel
 Development files for WebKit for GTK+ 2.
@@ -124,14 +125,19 @@ Pliki programistyczne komponentu WebKit dla GTK+ 2.
 
 %prep
 %setup -q -n webkitgtk-%{version}
-%patch0 -p1
-%patch1 -p1
-%patch2 -p1
-%patch3 -p1
-%patch4 -p1
-%patch5 -p1
-%patch6 -p1
-%patch7 -p1
+%patch -P0 -p1
+%patch -P1 -p1
+%patch -P2 -p1
+%patch -P3 -p1
+%patch -P4 -p1
+%patch -P5 -p1
+%patch -P6 -p1
+%patch -P7 -p1
+%patch -P8 -p1
+%patch -P9 -p1
+
+# required by icu 76
+%{__sed} -i -e 's/-std=c++11/-std=c++17/' Source/autotools/SetupCompilerFlags.m4
 
 %build
 %{__libtoolize}
@@ -139,9 +145,7 @@ Pliki programistyczne komponentu WebKit dla GTK+ 2.
 %{__autoconf}
 %{__autoheader}
 %{__automake}
-%if "%{cxx_version}" >= "4.9"
-CXXFLAGS="%{rpmcxxflags} -fno-delete-null-pointer-checks"
-%endif
+CXXFLAGS="%{rpmcxxflags} -fno-delete-null-pointer-checks -Wno-expansion-to-defined"
 %configure \
 %ifarch %{x8664}
 	LDFLAGS="%{rpmldflags} -fuse-ld=gold" \

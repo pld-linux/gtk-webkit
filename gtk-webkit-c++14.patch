@@ -1,0 +1,18 @@
+--- webkitgtk-2.4.11/Source/WTF/wtf/StdLibExtras.h.orig	2016-04-10 08:48:36.000000000 +0200
++++ webkitgtk-2.4.11/Source/WTF/wtf/StdLibExtras.h	2025-03-10 06:18:43.563476105 +0100
+@@ -321,6 +321,7 @@ namespace std {
+ }
+ #endif
+ 
++#if __cplusplus < 201402L
+ // This adds various C++14 features for versions of the STL that may not yet have them.
+ namespace std {
+ // MSVC 2013 supports std::make_unique already.
+@@ -391,6 +392,7 @@ namespace chrono_literals {
+ }
+ #endif
+ }
++#endif
+ 
+ using WTF::KB;
+ using WTF::MB;
